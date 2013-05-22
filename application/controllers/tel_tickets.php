@@ -190,12 +190,13 @@ class Tel_Tickets extends CI_Controller {
 
         if ($this->form_validation->run() == TRUE)
         {
+            $current_user = $this->ion_auth->user()->row();
             $tel_ticket = array(
                 'date' => $this->input->post('date'),
                 'phone' => $this->input->post('phone'),
                 'contact' => $this->input->post('contact'),
                 'address' => $this->input->post('address'),
-                'open' => $this->ion_auth->user(),
+                'open' => "$current_user->first_name $current_user->last_name",
                 'responsible' => $this->input->post('responsible'),
                 'description' => $this->input->post('description'),
             );

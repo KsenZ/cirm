@@ -27,13 +27,13 @@
             <div class="control-group">
                 <label for="responsible" class="control-label">Ответственный:</label>
                 <div class="controls">
-                    <input type="text" name="responsible" value="" id="responsible" class="input-xlarge"/>
-                </div>
-            </div>
-            <div class="control-group">
-                <label for="priortiy" class="control-label">Приоритет:</label>
-                <div class="controls">
-                    <input type="text" name="priority" value="" id="priority" class="input-xlarge"/>
+                    <select class="selectpicker" name="responsible" size="1">
+                        <?php
+                        $users = $this->ion_auth->users(4)->result();
+                        foreach ($users as $user):?>
+                            <option value="<?=$user->first_name;?> <?=$user->last_name;?>"><?=$user->first_name;?> <?=$user->last_name;?></option>
+                        <?php endforeach;?>
+                    </select>
                 </div>
             </div>
             <div class="control-group">
