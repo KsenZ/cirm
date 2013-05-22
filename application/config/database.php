@@ -49,8 +49,8 @@ $active_group = 'default';
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'cirm';
-$db['default']['password'] = 'cirm';
+$db['default']['username'] = 'mekadcrm';
+$db['default']['password'] = 'cuwlamav';
 $db['default']['database'] = 'cirm';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
