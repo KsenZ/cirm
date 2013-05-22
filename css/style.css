@@ -1,0 +1,29 @@
+body {
+	padding-top: 0px;
+	padding-bottom: 40px;
+	background-color: #DDD;
+}
+.sidebar-nav {
+	padding: 9px 0;
+}
+
+.header{
+	padding: 10px 35px 10px 35px;
+}
+
+.content{
+	background-color: #eeeeee;
+	padding: 15px;
+	min-height: 300px;
+	-webkit-border-radius: 6px;
+	   -moz-border-radius: 6px;
+                border-radius: 6px;
+}
+
+.sort-asc:after{
+	content: "▲";
+}
+
+.sort-desc:after{
+	content: "▼";
+}
