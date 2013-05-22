@@ -27,7 +27,7 @@
             <div class="control-group">
                 <label for="responsible" class="control-label">Ответственный:</label>
                 <div class="controls">
-                    <select class="selectpicker" name="responsible" size="1">
+                    <select class="span3" name="responsible" size="1">
                         <?php
                         $users = $this->ion_auth->users(4)->result();
                         foreach ($users as $user):?>
