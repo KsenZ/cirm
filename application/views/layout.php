@@ -51,7 +51,10 @@
                                 <? echo anchor('tel_tickets/display', '<i class="icon-phone"></i> Заявки телефония'); ?>
                             </li>
                             <li <? if ($this->uri->segment(1) == 'installations') echo 'class="active"'; ?> >
-                                <? echo anchor('installations/display', '<i class="icon-wrench"></i> Подключения'); ?>
+                                <? echo anchor('installations/display', '<i class="icon-sitemap"></i> Подключения'); ?>
+                            </li>
+                            <li <? if ($this->uri->segment(1) == 'repairs') echo 'class="active"'; ?> >
+                                <? echo anchor('repairs/display', '<i class="icon-wrench"></i> Ремонт'); ?>
                             </li>
                             <li class="nav-header"><hr /></li>
                             <li <? if ($this->uri->segment(2) == 'settings') echo 'class="active"'; ?> >
