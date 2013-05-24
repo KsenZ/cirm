@@ -20,19 +20,14 @@
         <link rel="shortcut icon" href="<? echo base_url('img/favicon.ico'); ?>">
         
         <script type="text/javascript">
-        /*<![CDATA[*/
         var $d = jQuery.noConflict();
-
         $d(document).ready(function() {
 
         // Указываем дейтпикеру что выводить все нужно на русском
         $d.datepicker.setDefaults($d.datepicker.regional['ru']);
-
         $d('#datepicker_edit').datepicker();
         $d('#datepicker_edit').datepicker("option", "dateFormat", 'yy-mm-dd');
-        });    
-
-        /* ]]> */
+        });
         </script>
 
     </head>
@@ -56,7 +51,7 @@
                                 <? echo anchor('tel_tickets/display', '<i class="icon-phone"></i> Заявки телефония'); ?>
                             </li>
                             <li <? if ($this->uri->segment(1) == 'installations') echo 'class="active"'; ?> >
-                                <? echo anchor('installations/display', '<i class="icon-wrench"></i> Подключение интернета'); ?>
+                                <? echo anchor('installations/display', '<i class="icon-wrench"></i> Подключения'); ?>
                             </li>
                             <li class="nav-header"><hr /></li>
                             <li <? if ($this->uri->segment(2) == 'settings') echo 'class="active"'; ?> >

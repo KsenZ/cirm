@@ -5,7 +5,6 @@
 * @author        Aleksey Ksenzov aka KsenZ
 * @copyright            Copyright (c) 2013, Aleksey Ksenzov
 * @license        GNU General Public License version 2(GPLv2)
-* @link        https://github.com/KsenZ/cirm
 */
 
 // ------------------------------------------------------------------------
@@ -23,15 +22,20 @@ class installations extends CI_Controller {
 
     public function display($sort_by='id', $sort_order='asc', $offset = 0)
     {
+        if(!$this->ion_auth->logged_in())
+        {
+            redirect('auth/login');
+        }
+
         $limit = 10;
         $this->data['fields'] = array(
             'id' => '№',
             'date' => 'Дата установки',
-            'ls' => 'Л/С',
+            'ls_num' => 'Л/С или №',
+            'type' => 'Тип установки',
             'name' => 'Ф.И.О. абонента',
-            'phone' => 'Контактный телефон',
+            'contact' => 'Контактный телефон',
             'address' => 'Адрес',
-            'description' => 'Комментарий',
             'responsible' => 'Ответственный',
         );
         $this->data['sort_by'] = $sort_by;
@@ -73,7 +77,8 @@ class installations extends CI_Controller {
             'id' => '№',
             'date' => 'Дата установки',
             'cdate' => 'Дата выполнения',
-            'ls' => 'Л/С',
+            'ls_num' => 'Л/С или №',
+            'type' => 'Тип установки',
             'name' => 'Ф.И.О. абонента',
             'address' => 'Адрес',
             'close' => 'Закрыл',
@@ -129,7 +134,8 @@ class installations extends CI_Controller {
                     'responsible' => $this->input->post('responsible'),
                     'date' => $this->input->post('date'),
                     'cdate' => $this->input->post('cdate'),
-                    'ls' => $this->input->post('ls'),
+                    'ls_num' => $this->input->post('ls_num'),
+                    'type' => $this->input->post('type'),
                     'name' => $this->input->post('name'),
                     'phone' => $this->input->post('phone'),
                     'address' => $this->input->post('address'),
@@ -142,10 +148,10 @@ class installations extends CI_Controller {
             }
             else
             {
-                $ticket = array(
+                $installations = array(
                     'comment' => $this->input->post('comment'),
                 );
-                $this->installations_model->update($this->input->post('id'), $ticket);
+                $this->installations_model->update($this->input->post('id'), $installations);
                 redirect('installations');
             }
         }
@@ -193,7 +199,8 @@ class installations extends CI_Controller {
             $installations = array(
                 'date' => $this->input->post('date'),
                 'name' => $this->input->post('name'),
-                'ls' => $this->input->post('ls'),
+                'ls_num' => $this->input->post('ls_num'),
+                'type' => $this->input->post('type'),
                 'contact' => $this->input->post('contact'),
                 'address' => $this->input->post('address'),
                 'open' => "$current_user->first_name $current_user->last_name",

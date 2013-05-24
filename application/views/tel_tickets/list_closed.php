@@ -7,7 +7,7 @@
                     <th></th>
                     <?php foreach ($fields as $field_name => $field_display) : ?>
                         <th <?php if ($sort_by == $field_name) echo "class=\"sort-$sort_order\""; ?> >
-                            <?php echo anchor("tel_tickets/display/$field_name/" . (($sort_order == 'asc' && $field_name == $sort_by) ? 'desc' : 'asc') , $field_display); ?>
+                            <?php echo anchor("tel_tickets/display_closed/$field_name/" . (($sort_order == 'asc' && $field_name == $sort_by) ? 'desc' : 'asc') , $field_display); ?>
                         </th>
                         <?php endforeach; ?>
 

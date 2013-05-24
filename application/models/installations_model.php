@@ -5,7 +5,6 @@
 * @author        Aleksey Ksenzov aka KsenZ
 * @copyright            Copyright (c) 2013, Aleksey Ksenzov
 * @license        GNU General Public License version 2(GPLv2)
-* @link        https://gitorious.org/cirm/cirm
 */
 // ------------------------------------------------------------------------
 

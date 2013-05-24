@@ -1,6 +1,6 @@
 <div class="span10">
     <div class="content">
-        <legend>Список установок <?php echo anchor('installations/add', '<i class="icon-file"></i> Добавить новую', 'class="btn btn-small"'); ?> | <?php echo anchor('installations/display_closed', '<i class="icon-remove-circle"></i> Посмотреть выполненные', 'class="btn btn-small"'); ?></legend>
+        <legend>Список подключений <?php echo anchor('installations/add', '<i class="icon-file"></i> Добавить новое', 'class="btn btn-small"'); ?> | <?php echo anchor('installations/display_closed', '<i class="icon-remove-circle"></i> Посмотреть выполненные', 'class="btn btn-small"'); ?></legend>
         <table class="table table-striped table-bordered table-condensed">
             <thead>
                 <tr>
@@ -17,7 +17,7 @@
                 <?php foreach ($installations as $installation): ?>
                     <tr>
                         <td>
-                            <?php echo anchor('installations/edit/' . $ticket['id'],'<i class="icon-edit"></i>', array('title'=>'редактировать')); ?>
+                            <?php echo anchor('installations/edit/' . $installation['id'],'<i class="icon-edit"></i>', array('title'=>'редактировать')); ?>
                         </td>
                         <?php foreach ($fields as $field_name => $field_display) : ?>
                             <td><?php echo $installation[$field_name] ?></td>

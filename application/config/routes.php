@@ -43,6 +43,7 @@ $route['404_override'] = '';
 
 $route['tickets'] = "tickets/display";
 $route['tel_tickets'] = "tel_tickets/display";
+$route['installations'] = "installations/display";
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

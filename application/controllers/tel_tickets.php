@@ -24,6 +24,11 @@ class Tel_Tickets extends CI_Controller {
 
     public function display($sort_by='id', $sort_order='asc', $offset = 0)
     {
+        if(!$this->ion_auth->logged_in())
+        {
+            redirect('auth/login');
+        }
+
         $limit = 10;
         $this->data['fields'] = array(
             'id' => '№',
@@ -83,11 +88,11 @@ class Tel_Tickets extends CI_Controller {
         );
         $this->data['sort_by'] = $sort_by;
         $this->data['sort_order'] = $sort_order;
-        $this->data['tickets_count'] = $this->tel_tickets_model->get_count_closed();
+        $this->data['ctickets_count'] = $this->tel_tickets_model->get_count_closed();
         $this->load->library('pagination');
         $config = array(
-            'base_url' => site_url("tel_tickets/display/$sort_by/$sort_order"),
-            'total_rows' => $this->data['tickets_count'],
+            'base_url' => site_url("tel_tickets/display_closed/$sort_by/$sort_order"),
+            'total_rows' => $this->data['ctickets_count'],
             'per_page' => $limit,
             'uri_segment' => 5,
             'full_tag_open' => '<div class="pagination"><ul>',

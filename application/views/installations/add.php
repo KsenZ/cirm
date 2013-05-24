@@ -5,7 +5,7 @@
         ?>
         <input type="hidden" name="date" value="<?php echo date("Y-m-d G:i:s"); ?>" id="date" />
         <fieldset xmlns="http://www.w3.org/1999/xhtml">
-            <legend>Новая установка</legend>
+            <legend>Новое подключение</legend>
             <div class="control-group<?php if (form_error('name')) echo ' error'; ?>">
                 <label for="name" class="control-label">Ф.И.О. абонента:</label>
                 <div class="controls">
@@ -14,9 +14,9 @@
                 </div>
             </div>
             <div class="control-group">
-                <label for="ls" class="control-label">Л/С:</label>
+                <label for="ls_num" class="control-label">Л/С или №:</label>
                 <div class="controls">
-                    <input type="text" name="ls" value="" id="ls" class="input-xlarge"/>
+                    <input type="text" name="ls_num" value="" id="ls_num" class="input-xlarge"/>
                 </div>
             </div>
             <div class="control-group<?php if (form_error('phone')) echo ' error'; ?>">
@@ -38,9 +38,25 @@
                 </div>
             </div>
             <div class="control-group">
+                <label for="type" class="control-label">Тип установки:</label>
+                <div class="controls">
+                    <select name="type" size="1">
+                        <option value="Интернет">Интернет</option>
+                        <option value="Телефон">Телефон</option>
+                        <option value="Интернет+Телефон">Интернет+Телефон</option>
+                    </select>
+                </div>
+            </div>
+            <div class="control-group">
                 <label for="responsible" class="control-label">Ответственный:</label>
                 <div class="controls">
-                    <input type="text" name="responsible" value="" id="responsible" class="input-xlarge"/>
+                    <select name="responsible" size="1">
+                        <?php
+                        $users = $this->ion_auth->users()->result();
+                        foreach ($users as $user):?>
+                            <option value="<?=$user->first_name;?> <?=$user->last_name;?>"><?=$user->first_name;?> <?=$user->last_name;?></option>
+                        <?php endforeach;?>
+                    </select>
                 </div>
             </div>
             <div class="control-group">
