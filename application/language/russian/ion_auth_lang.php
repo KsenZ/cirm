@@ -47,7 +47,7 @@ $lang['update_unsuccessful'] 		 	 = 'Невозможно обновить уч�
 $lang['delete_successful'] 		 	 = 'Учетная запись удалена';
 $lang['delete_unsuccessful'] 		 	 = 'Невозможно удалить учетную запись';
 
-// Email Subjects - TODO Please Translate
+// Email Subjects
 $lang['email_forgotten_password_subject']    = 'Проверка забытого пароля';
 $lang['email_new_password_subject']          = 'Новый пароль';
 $lang['email_activation_subject']            = 'Активация учетной записи';

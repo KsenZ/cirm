@@ -18,15 +18,15 @@ class installations extends CI_Controller {
         parent::__construct();
         $this->load->model('crud_model');
         $this->load->model('installations_model');
-    }
 
-    public function display($sort_by='id', $sort_order='asc', $offset = 0)
-    {
         if(!$this->ion_auth->logged_in())
         {
             redirect('auth/login');
         }
+    }
 
+    public function display($sort_by='id', $sort_order='asc', $offset = 0)
+    {
         $limit = 10;
         $this->data['fields'] = array(
             'id' => '№',
@@ -116,7 +116,7 @@ class installations extends CI_Controller {
         $this->layout->render('installations/list_closed', $this->data);
     }
 
-    function edit()
+    public function edit()
     {
         $id = $this->uri->segment(3, 0);
         $id = (int)$id;
@@ -170,7 +170,7 @@ class installations extends CI_Controller {
         }
     }
 
-    function view_closed()
+    public function view_closed()
     {
         $id = $this->uri->segment(3, 0);
         $id = (int)$id;

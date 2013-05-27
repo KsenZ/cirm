@@ -98,7 +98,7 @@ class Installations_model extends Crud_model {
         return $query->row_array();
     }
     
-     public function get_by_id_closed($id){
+    public function get_by_id_closed($id){
         $this->db->where('id', $id);
         $query = $this->db->get($this->ctable);
         return $query->row_array();

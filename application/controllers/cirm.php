@@ -14,19 +14,19 @@ class Cirm extends CI_Controller {
     function __construct()
     {
         parent::__construct();
-    }
 
-    function index()
-    {
         if(!$this->ion_auth->logged_in())
         {
             redirect('auth/login');
         }
+    }
 
+    public function index()
+    {
         $this->layout->render('cirm/index');
     }
 
-    function logout()
+    public function logout()
     {
         if($this->ion_auth->logout())
         {
@@ -34,16 +34,9 @@ class Cirm extends CI_Controller {
         }
     }
 
-    function del_user($id)
+    public function del_user($id)
     {
-        if(!$this->ion_auth->logged_in())
-        {
-            redirect('auth/login');
-        }
-        else
-        {
             $this->ion_auth->delete_user($id);
             redirect('auth/index');
-        }
     }
 }

@@ -30,4 +30,4 @@
             echo $pagination; 
         ?>
     </div>
-</div><!--/span-->
+</div>
