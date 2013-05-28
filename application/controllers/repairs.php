@@ -71,7 +71,47 @@ class Repairs extends CI_Controller {
 
     public function display_closed($sort_by='id', $sort_order='asc', $offset = 0)
     {
+        $limit = 10;
+        $this->data['fields'] = array(
+            'id' => '№',
+            'date' => 'Дата приемки',
+            'cdate' => 'Дата выдачи',
+            'client' => 'Клиент',
+            'phone' => 'Контактный телефон',
+            'product' => 'Изделие',
+            'description' => 'Неисправность',
+            'close' => 'Выполнил'
+        );
+        $this->data['sort_by'] = $sort_by;
+        $this->data['sort_order'] = $sort_order;
+        $this->data['crepairs_count'] = $this->repairs_model->get_count_closed();
+        $this->load->library('pagination');
+        $config = array(
+            'base_url' => site_url("repairs/display_closed/$sort_by/$sort_order"),
+            'total_rows' => $this->data['crepairs_count'],
+            'per_page' => $limit,
+            'uri_segment' => 5,
+            'full_tag_open' => '<div class="pagination"><ul>',
+            'full_tag_close' => '</ul></div>',
+            'first_link' => '<li>Первая</li>',
+            'last_link' => '<li>Последняя</li>',
+            'cur_tag_open' => '<li class="active"><a href="#">',
+            'cur_tag_close' => '</a></li>',
+            'num_tag_open' => '<li>',
+            'num_tag_close' => '</li>',
+            'next_link' => '&gt;',
+            'next_tag_open' => '<li>',
+            'next_tag_close' => '</li>',
+            'prev_link' => '&lt;',
+            'prev_tag_open' => '<li>',
+            'prev_tag_close' => '</li>'
+        );
+        $this->pagination->initialize($config);
 
+        $this->data['pagination'] = $this->pagination->create_links();
+        $this->data['repairs'] = $this->repairs_model->get_list_closed($limit, $offset, $sort_by, $sort_order);
+
+        $this->layout->render('repairs/list_closed', $this->data);
     }
 
     public function edit()
@@ -139,7 +179,21 @@ class Repairs extends CI_Controller {
 
     public function view_closed()
     {
+        $id = $this->uri->segment(3, 0);
+        $id = (int)$id;
 
+        $this->data['repairs'] = $this->repairs_model->get_by_id_closed($id);
+
+        if ($this->data['repairs']  == null)
+        {
+            $this->data['msg'] = 'Ничего не найденно.';
+            $this->layout->render('error', $this->data);
+        }
+        else
+        {
+            $this->data['form_action'] = 'repairs/view_closed/' . $id;
+            $this->layout->render('repairs/view_closed', $this->data);
+        }
     }
 
     public function add()
