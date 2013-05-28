@@ -1,15 +1,15 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * CodeIgniter
  *
  * An open source application development framework for PHP 5.1.6 or newer
  *
- * @package		CodeIgniter
- * @author		Esen Sagynov
- * @copyright	Copyright (c) 2008 - 2011, EllisLab, Inc.
- * @license		http://codeigniter.com/user_guide/license.html
- * @link		http://codeigniter.com
- * @since		Version 2.0.2
+ * @package        CodeIgniter
+ * @author        Esen Sagynov
+ * @copyright    Copyright (c) 2008 - 2011, EllisLab, Inc.
+ * @license        http://codeigniter.com/user_guide/license.html
+ * @link        http://codeigniter.com
+ * @since        Version 2.0.2
  * @filesource
  */
 
@@ -20,17 +20,18 @@
  *
  * This class extends the parent result class: CI_DB_result
  *
- * @category	Database
- * @author		Esen Sagynov
- * @link		http://codeigniter.com/user_guide/database/
+ * @category    Database
+ * @author        Esen Sagynov
+ * @link        http://codeigniter.com/user_guide/database/
  */
-class CI_DB_cubrid_result extends CI_DB_result {
+class CI_DB_cubrid_result extends CI_DB_result
+{
 
 	/**
 	 * Number of rows in the result set
 	 *
-	 * @access	public
-	 * @return	integer
+	 * @access    public
+	 * @return    integer
 	 */
 	function num_rows()
 	{
@@ -42,8 +43,8 @@ class CI_DB_cubrid_result extends CI_DB_result {
 	/**
 	 * Number of fields in the result set
 	 *
-	 * @access	public
-	 * @return	integer
+	 * @access    public
+	 * @return    integer
 	 */
 	function num_fields()
 	{
@@ -57,8 +58,8 @@ class CI_DB_cubrid_result extends CI_DB_result {
 	 *
 	 * Generates an array of column names
 	 *
-	 * @access	public
-	 * @return	array
+	 * @access    public
+	 * @return    array
 	 */
 	function list_fields()
 	{
@@ -72,8 +73,8 @@ class CI_DB_cubrid_result extends CI_DB_result {
 	 *
 	 * Generates an array of objects containing field meta-data
 	 *
-	 * @access	public
-	 * @return	array
+	 * @access    public
+	 * @return    array
 	 */
 	function field_data()
 	{
@@ -81,13 +82,12 @@ class CI_DB_cubrid_result extends CI_DB_result {
 
 		$tablePrimaryKeys = array();
 
-		while ($field = cubrid_fetch_field($this->result_id))
-		{
-			$F				= new stdClass();
-			$F->name		= $field->name;
-			$F->type		= $field->type;
-			$F->default		= $field->def;
-			$F->max_length	= $field->max_length;
+		while ($field = cubrid_fetch_field($this->result_id)) {
+			$F = new stdClass();
+			$F->name = $field->name;
+			$F->type = $field->type;
+			$F->default = $field->def;
+			$F->max_length = $field->max_length;
 
 			// At this moment primary_key property is not returned when
 			// cubrid_fetch_field is called. The following code will
@@ -108,18 +108,14 @@ class CI_DB_cubrid_result extends CI_DB_result {
 				$field->table . "_" . $field->name . "'"
 			);
 
-			if ($res)
-			{
+			if ($res) {
 				$row = cubrid_fetch_array($res, CUBRID_NUM);
 				$F->primary_key = ($row[0] > 0 ? 1 : null);
-			}
-			else
-			{
+			} else {
 				$F->primary_key = null;
 			}
 
-			if (is_resource($res))
-			{
+			if (is_resource($res)) {
 				cubrid_close_request($res);
 				$this->result_id = FALSE;
 			}
@@ -135,14 +131,14 @@ class CI_DB_cubrid_result extends CI_DB_result {
 	/**
 	 * Free the result
 	 *
-	 * @return	null
+	 * @return    null
 	 */
 	function free_result()
 	{
-		if(is_resource($this->result_id) ||
+		if (is_resource($this->result_id) ||
 			get_resource_type($this->result_id) == "Unknown" &&
-			preg_match('/Resource id #/', strval($this->result_id)))
-		{
+			preg_match('/Resource id #/', strval($this->result_id))
+		) {
 			cubrid_close_request($this->result_id);
 			$this->result_id = FALSE;
 		}
@@ -157,8 +153,8 @@ class CI_DB_cubrid_result extends CI_DB_result {
 	 * this internally before fetching results to make sure the
 	 * result set starts at zero
 	 *
-	 * @access	private
-	 * @return	array
+	 * @access    private
+	 * @return    array
 	 */
 	function _data_seek($n = 0)
 	{
@@ -172,8 +168,8 @@ class CI_DB_cubrid_result extends CI_DB_result {
 	 *
 	 * Returns the result set as an array
 	 *
-	 * @access	private
-	 * @return	array
+	 * @access    private
+	 * @return    array
 	 */
 	function _fetch_assoc()
 	{
@@ -187,8 +183,8 @@ class CI_DB_cubrid_result extends CI_DB_result {
 	 *
 	 * Returns the result set as an object
 	 *
-	 * @access	private
-	 * @return	object
+	 * @access    private
+	 * @return    object
 	 */
 	function _fetch_object()
 	{

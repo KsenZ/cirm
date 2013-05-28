@@ -1,15 +1,15 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * CodeIgniter
  *
  * An open source application development framework for PHP 5.1.6 or newer
  *
- * @package		CodeIgniter
- * @author		ExpressionEngine Dev Team
- * @copyright	Copyright (c) 2008 - 2011, EllisLab, Inc.
- * @license		http://codeigniter.com/user_guide/license.html
- * @link		http://codeigniter.com
- * @since		Version 2.0
+ * @package        CodeIgniter
+ * @author        ExpressionEngine Dev Team
+ * @copyright    Copyright (c) 2008 - 2011, EllisLab, Inc.
+ * @license        http://codeigniter.com/user_guide/license.html
+ * @link        http://codeigniter.com
+ * @since        Version 2.0
  * @filesource
  */
 
@@ -20,13 +20,14 @@
  *
  * Provides support for UTF-8 environments
  *
- * @package		CodeIgniter
- * @subpackage	Libraries
- * @category	UTF-8
- * @author		ExpressionEngine Dev Team
- * @link		http://codeigniter.com/user_guide/libraries/utf8.html
+ * @package        CodeIgniter
+ * @subpackage    Libraries
+ * @category    UTF-8
+ * @author        ExpressionEngine Dev Team
+ * @link        http://codeigniter.com/user_guide/libraries/utf8.html
  */
-class CI_Utf8 {
+class CI_Utf8
+{
 
 	/**
 	 * Constructor
@@ -41,12 +42,11 @@ class CI_Utf8 {
 		global $CFG;
 
 		if (
-			preg_match('/./u', 'é') === 1					// PCRE must support UTF-8
-			AND function_exists('iconv')					// iconv must be installed
-			AND ini_get('mbstring.func_overload') != 1		// Multibyte string function overloading cannot be enabled
-			AND $CFG->item('charset') == 'UTF-8'			// Application charset must be UTF-8
-			)
-		{
+			preg_match('/./u', 'é') === 1 // PCRE must support UTF-8
+			AND function_exists('iconv') // iconv must be installed
+			AND ini_get('mbstring.func_overload') != 1 // Multibyte string function overloading cannot be enabled
+			AND $CFG->item('charset') == 'UTF-8' // Application charset must be UTF-8
+		) {
 			log_message('debug', "UTF-8 Support Enabled");
 
 			define('UTF8_ENABLED', TRUE);
@@ -54,18 +54,13 @@ class CI_Utf8 {
 			// set internal encoding for multibyte string functions if necessary
 			// and set a flag so we don't have to repeatedly use extension_loaded()
 			// or function_exists()
-			if (extension_loaded('mbstring'))
-			{
+			if (extension_loaded('mbstring')) {
 				define('MB_ENABLED', TRUE);
 				mb_internal_encoding('UTF-8');
-			}
-			else
-			{
+			} else {
 				define('MB_ENABLED', FALSE);
 			}
-		}
-		else
-		{
+		} else {
 			log_message('debug', "UTF-8 Support Disabled");
 			define('UTF8_ENABLED', FALSE);
 		}
@@ -78,14 +73,13 @@ class CI_Utf8 {
 	 *
 	 * Ensures strings are UTF-8
 	 *
-	 * @access	public
-	 * @param	string
-	 * @return	string
+	 * @access    public
+	 * @param    string
+	 * @return    string
 	 */
 	function clean_string($str)
 	{
-		if ($this->_is_ascii($str) === FALSE)
-		{
+		if ($this->_is_ascii($str) === FALSE) {
 			$str = @iconv('UTF-8', 'UTF-8//IGNORE', $str);
 		}
 
@@ -101,9 +95,9 @@ class CI_Utf8 {
 	 * line feeds, and carriage returns, as all others can cause
 	 * problems in XML
 	 *
-	 * @access	public
-	 * @param	string
-	 * @return	string
+	 * @access    public
+	 * @param    string
+	 * @return    string
 	 */
 	function safe_ascii_for_xml($str)
 	{
@@ -117,23 +111,18 @@ class CI_Utf8 {
 	 *
 	 * Attempts to convert a string to UTF-8
 	 *
-	 * @access	public
-	 * @param	string
-	 * @param	string	- input encoding
-	 * @return	string
+	 * @access    public
+	 * @param    string
+	 * @param    string    - input encoding
+	 * @return    string
 	 */
 	function convert_to_utf8($str, $encoding)
 	{
-		if (function_exists('iconv'))
-		{
+		if (function_exists('iconv')) {
 			$str = @iconv($encoding, 'UTF-8', $str);
-		}
-		elseif (function_exists('mb_convert_encoding'))
-		{
+		} elseif (function_exists('mb_convert_encoding')) {
 			$str = @mb_convert_encoding($str, 'UTF-8', $encoding);
-		}
-		else
-		{
+		} else {
 			return FALSE;
 		}
 
@@ -147,9 +136,9 @@ class CI_Utf8 {
 	 *
 	 * Tests if a string is standard 7-bit ASCII or not
 	 *
-	 * @access	public
-	 * @param	string
-	 * @return	bool
+	 * @access    public
+	 * @param    string
+	 * @return    bool
 	 */
 	function _is_ascii($str)
 	{

@@ -1,15 +1,15 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * CodeIgniter
  *
  * An open source application development framework for PHP 5.1.6 or newer
  *
- * @package		CodeIgniter
- * @copyright	Copyright (c) 2008 - 2011, EllisLab, Inc.
- * @license		http://codeigniter.com/user_guide/license.html
- * @author		EllisLab Dev Team
- * @link		http://codeigniter.com
- * @since		Version 2.1.2
+ * @package        CodeIgniter
+ * @copyright    Copyright (c) 2008 - 2011, EllisLab, Inc.
+ * @license        http://codeigniter.com/user_guide/license.html
+ * @author        EllisLab Dev Team
+ * @link        http://codeigniter.com
+ * @since        Version 2.1.2
  * @filesource
  */
 
@@ -20,27 +20,25 @@
  *
  * This class extends the parent result class: CI_DB_result
  *
- * @category	Database
- * @author		EllisLab Dev Team
- * @link		http://codeigniter.com/user_guide/database/
+ * @category    Database
+ * @author        EllisLab Dev Team
+ * @link        http://codeigniter.com/user_guide/database/
  */
-class CI_DB_pdo_result extends CI_DB_result {
+class CI_DB_pdo_result extends CI_DB_result
+{
 
 	public $num_rows;
 
 	/**
 	 * Number of rows in the result set
 	 *
-	 * @return	int
+	 * @return    int
 	 */
 	public function num_rows()
 	{
-		if (is_int($this->num_rows))
-		{
+		if (is_int($this->num_rows)) {
 			return $this->num_rows;
-		}
-		elseif (($this->num_rows = $this->result_id->rowCount()) > 0)
-		{
+		} elseif (($this->num_rows = $this->result_id->rowCount()) > 0) {
 			return $this->num_rows;
 		}
 
@@ -54,8 +52,8 @@ class CI_DB_pdo_result extends CI_DB_result {
 	/**
 	 * Number of fields in the result set
 	 *
-	 * @access	public
-	 * @return	integer
+	 * @access    public
+	 * @return    integer
 	 */
 	function num_fields()
 	{
@@ -69,13 +67,12 @@ class CI_DB_pdo_result extends CI_DB_result {
 	 *
 	 * Generates an array of column names
 	 *
-	 * @access	public
-	 * @return	array
+	 * @access    public
+	 * @return    array
 	 */
 	function list_fields()
 	{
-		if ($this->db->db_debug)
-		{
+		if ($this->db->db_debug) {
 			return $this->db->display_error('db_unsuported_feature');
 		}
 		return FALSE;
@@ -88,26 +85,21 @@ class CI_DB_pdo_result extends CI_DB_result {
 	 *
 	 * Generates an array of objects containing field meta-data
 	 *
-	 * @access	public
-	 * @return	array
+	 * @access    public
+	 * @return    array
 	 */
 	function field_data()
 	{
 		$data = array();
-	
-		try
-		{
-			for($i = 0; $i < $this->num_fields(); $i++)
-			{
+
+		try {
+			for ($i = 0; $i < $this->num_fields(); $i++) {
 				$data[] = $this->result_id->getColumnMeta($i);
 			}
-			
+
 			return $data;
-		}
-		catch (Exception $e)
-		{
-			if ($this->db->db_debug)
-			{
+		} catch (Exception $e) {
+			if ($this->db->db_debug) {
 				return $this->db->display_error('db_unsuported_feature');
 			}
 			return FALSE;
@@ -119,12 +111,11 @@ class CI_DB_pdo_result extends CI_DB_result {
 	/**
 	 * Free the result
 	 *
-	 * @return	null
+	 * @return    null
 	 */
 	function free_result()
 	{
-		if (is_object($this->result_id))
-		{
+		if (is_object($this->result_id)) {
 			$this->result_id = FALSE;
 		}
 	}
@@ -138,8 +129,8 @@ class CI_DB_pdo_result extends CI_DB_result {
 	 * this internally before fetching results to make sure the
 	 * result set starts at zero
 	 *
-	 * @access	private
-	 * @return	array
+	 * @access    private
+	 * @return    array
 	 */
 	function _data_seek($n = 0)
 	{
@@ -153,8 +144,8 @@ class CI_DB_pdo_result extends CI_DB_result {
 	 *
 	 * Returns the result set as an array
 	 *
-	 * @access	private
-	 * @return	array
+	 * @access    private
+	 * @return    array
 	 */
 	function _fetch_assoc()
 	{
@@ -168,11 +159,11 @@ class CI_DB_pdo_result extends CI_DB_result {
 	 *
 	 * Returns the result set as an object
 	 *
-	 * @access	private
-	 * @return	object
+	 * @access    private
+	 * @return    object
 	 */
 	function _fetch_object()
-	{	
+	{
 		return $this->result_id->fetchObject();
 	}
 
