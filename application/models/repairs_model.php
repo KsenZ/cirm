@@ -123,6 +123,20 @@ class Repairs_model extends Crud_model {
 
         array
         (
+            'field' => 'product',
+            'label' => 'Изделие',
+            'rules' => 'trim|required|min_length[4]|max_length[50]'
+        ),
+
+        array
+        (
+            'field' => 'sn',
+            'label' => 'Серийный номер',
+            'rules' => 'trim|required|min_length[4]|max_length[50]'
+        ),
+
+        array
+        (
             'field' => 'description',
             'label' => 'Описание неисправности',
             'rules' => 'trim|required|min_length[10]|max_length[200]'

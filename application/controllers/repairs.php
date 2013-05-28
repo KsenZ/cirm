@@ -9,7 +9,7 @@
 
 // ------------------------------------------------------------------------
 
-class repairs extends CI_Controller {
+class Repairs extends CI_Controller {
 
     public $data = array();
 
@@ -35,7 +35,6 @@ class repairs extends CI_Controller {
             'phone' => 'Контактный телефон',
             'product' => 'Изделие',
             'description' => 'Неисправность',
-            'target' => 'Сдано для',
             'responsible' => 'Ответственный'
         );
         $this->data['sort_by'] = $sort_by;
@@ -96,14 +95,24 @@ class repairs extends CI_Controller {
                 'date' => $this->input->post('date'),
                 'client' => $this->input->post('client'),
                 'phone' => $this->input->post('phone'),
+                'product' => $this->input->post('product'),
+                'sn' => $this->input->post('sn'),
+                'box' => $this->input->post('box'),
+                'wire' => $this->input->post('wire'),
+                'sh' => $this->input->post('sh'),
+                'attrition' => $this->input->post('attrition'),
+                'scratch' => $this->input->post('scratch'),
+                'new' => $this->input->post('new'),
+                'diag' => $this->input->post('diag'),
+                'repair' => $this->input->post('repair'),
                 'open' => "$current_user->first_name $current_user->last_name",
                 'responsible' => $this->input->post('responsible'),
                 'description' => $this->input->post('description'),
             );
-            $this->perairs_model->add( $repair );
+            $this->repairs_model->add( $repair );
             redirect('repairs');
         }
         $this->data['form_action'] = 'repairs/add/';
-        $this->layout->render('perairs/add', $this->data);
+        $this->layout->render('repairs/add', $this->data);
     }
 }
