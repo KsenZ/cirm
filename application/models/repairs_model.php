@@ -143,4 +143,14 @@ class Repairs_model extends Crud_model {
         ),
 
     );
+
+    public $update_rules = array
+    (
+        array
+        (
+            'field' => 'comment',
+            'label' => 'Коментарий',
+            'rules' => 'trim|required|min_length[5]|max_length[200]'
+        ),
+    );
 }

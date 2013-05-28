@@ -5,7 +5,7 @@
         <input type="hidden" name="id" value="<?php echo set_value('id', $tickets['id']); ?>" id="id" />
         <fieldset xmlns="http://www.w3.org/1999/xhtml">
             <legend>Тикет № <?php echo $tickets['id']; ?></legend>
-            <div class="control-group<?php if (form_error('name')) echo ' error'; ?>">
+            <div class="control-group">
                 <label for="name" class="control-label">Открыл:</label>
                 <div class="controls">
                     <input type="text" name="open" value="<?php echo set_value('open', $tickets['open']); ?>" id="open" class="input-xlarge" readonly/>

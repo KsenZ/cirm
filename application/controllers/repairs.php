@@ -76,7 +76,65 @@ class Repairs extends CI_Controller {
 
     public function edit()
     {
+        $id = $this->uri->segment(3, 0);
+        $id = (int)$id;
 
+        $this->form_validation->set_rules($this->repairs_model->update_rules);
+
+        if ($this->form_validation->run() == TRUE)
+        {
+            if ($this->input->post('close_checkbox'))
+            {
+                $current_user = $this->ion_auth->user()->row();
+                $data = array(
+                    'id' => $this->input->post('id'),
+                    'open' => $this->input->post('open'),
+                    'responsible' => $this->input->post('responsible'),
+                    'date' => $this->input->post('date'),
+                    'cdate' => $this->input->post('cdate'),
+                    'client' => $this->input->post('client'),
+                    'phone' => $this->input->post('phone'),
+                    'product' => $this->input->post('product'),
+                    'sn' => $this->input->post('sn'),
+                    'box' => $this->input->post('box'),
+                    'wire' => $this->input->post('wire'),
+                    'sh' => $this->input->post('sh'),
+                    'attrition' => $this->input->post('attrition'),
+                    'scratch' => $this->input->post('scratch'),
+                    'new' => $this->input->post('new'),
+                    'diag' => $this->input->post('diag'),
+                    'repair' => $this->input->post('repair'),
+                    'description' => $this->input->post('description'),
+                    'comment' => $this->input->post('comment'),
+                    'cost' => $this->input->post('cost'),
+                    'close' => "$current_user->first_name $current_user->last_name",
+                );
+                $this->repairs_model->close_ticket($this->input->post('id'), $data);
+                redirect('repairs');
+            }
+            else
+            {
+                $repair = array(
+                    'cost' => $this->input->post('cost'),
+                    'comment' => $this->input->post('comment'),
+                );
+                $this->repairs_model->update($this->input->post('id'), $repair);
+                redirect('repairs');
+            }
+        }
+
+        $this->data['repairs'] = $this->repairs_model->get_by_id($id);
+
+        if ($this->data['repairs']  == null)
+        {
+            $this->data['msg'] = 'Ничего не найденно.';
+            $this->layout->render('error', $this->data);
+        }
+        else
+        {
+            $this->data['form_action'] = 'repairs/edit/' . $id;
+            $this->layout->render('repairs/edit', $this->data);
+        }
     }
 
     public function view_closed()
