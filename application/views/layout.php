@@ -11,6 +11,7 @@
         <script src="<? echo base_url('/js/jqueryui/ui/jquery-ui.js'); ?>"></script>
         <script src="<? echo base_url('/js/jqueryui/ui/i18n/jquery.ui.datepicker-ru.js'); ?>"></script>
         <script src="<? echo base_url('/js/bootstrap.js'); ?>"></script>
+        <script src="<? echo base_url('/js/bootstrap-tab.js'); ?>"></script>
 
         <link href="<? echo base_url('/css/bootstrap.css'); ?>" rel="stylesheet">
         <link href="<? echo base_url('/css/font-awesome.min.css'); ?>" rel="stylesheet">
@@ -58,10 +59,7 @@
                             </li>
                             <li class="nav-header"><hr /></li>
                             <li <? if ($this->uri->segment(2) == 'settings') echo 'class="active"'; ?> >
-                                <? if ($this->ion_auth->is_admin()) echo anchor('page/settings', '<i class="icon-cog"></i> Настройки'); ?>
-                            </li> 
-                            <li <? if ($this->uri->segment(1) == 'users') echo 'class="active"'; ?> >
-                                <? if ($this->ion_auth->is_admin()) echo anchor('auth/index', '<i class="icon-user"></i> Пользователи'); ?>
+                                <? if ($this->ion_auth->is_admin()) echo anchor('settings/index', '<i class="icon-cog"></i> Настройки'); ?>
                             </li>
                             <li <? if ($this->uri->segment(2) == 'help') echo 'class="active"'; ?> >
                                 <? echo anchor('page/help', '<i class="icon-question-sign"></i> Справка'); ?>
@@ -75,7 +73,7 @@
 
                 <? $this->load->view($part_name); ?>
 
-            </div><!--/row-->
+            </div>
             <hr>
 
             <footer align=center>
@@ -85,6 +83,6 @@
                     printf('Время генирации: {elapsed_time} | Колличество SQL запросов: %s | Потребление памяти: {memory_usage}', $mq); ?>
             </footer>
 
-        </div><!--/.fluid-container-->
+        </div>
     </body>
 </html>                
