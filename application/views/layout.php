@@ -62,7 +62,13 @@
 						<hr/>
 					</li>
 					<li <? if ($this->uri->segment(2) == 'settings') echo 'class="active"'; ?> >
-						<? if ($this->ion_auth->is_admin()) echo anchor('settings/index', '<i class="icon-cog"></i> Настройки'); ?>
+						<? if ($this->ion_auth->is_admin()) echo anchor('settings/index', '<i class="icon-cogs"></i> Настройки'); ?>
+					</li>
+					<li <? if ($this->uri->segment(2) == 'users') echo 'class="active"'; ?> >
+						<? if ($this->ion_auth->is_admin()) echo anchor('auth/index', '<i class="icon-group"></i> Пользователи'); ?>
+					</li>
+					<li <? if ($this->uri->segment(2) == 'settings') echo 'class="active"'; ?> >
+						<? if ($this->ion_auth->is_admin()) echo anchor('services/display', '<i class="icon-money"></i> Услуги'); ?>
 					</li>
 					<li <? if ($this->uri->segment(2) == 'help') echo 'class="active"'; ?> >
 						<? echo anchor('page/help', '<i class="icon-question-sign"></i> Справка'); ?>

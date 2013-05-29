@@ -151,7 +151,7 @@ class Repairs_model extends Crud_model
 		array
 		(
 			'field' => 'comment',
-			'label' => 'Коментарий',
+			'label' => '"Коментарий"',
 			'rules' => 'trim|required|min_length[5]|max_length[200]'
 		),
 	);

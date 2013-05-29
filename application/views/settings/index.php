@@ -54,7 +54,7 @@
 					</table>
 				</div>
 				<div class="tab-pane" id="services">
-					Стоймость услуг
+					<h2>Услуги</h2>
 				</div>
 			</div>
 		</div>

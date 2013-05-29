@@ -118,41 +118,20 @@
 				<div class="controls">
 					<input type="text" name="comment" value="<?= $repairs['comment']; ?>" id="comment"
 					       class="input-xlarge"/>
+					<span class="help-inline"><?php echo form_error('comment'); ?></span>
 				</div>
 			</div>
 			<div class="control-group">
 				<label for="cost" class="control-label">Стоймость ремонта:</label>
 
 				<div class="controls">
-					<?php
-					//TODO-cirm: Сделать выборку стоймости из базы
-					if ($repairs['cost'] == 0) {
-						echo "<select name=\"cost\" size=\"1\">
-                        <option value=\"0\">Выбрать стоймость</option>
-                        <option value=\"50\">50 руб</option>
-                        <option value=\"100\">100 руб</option>
-                        <option value=\"150\">150 руб</option>
-                        <option value=\"200\">200 руб</option>
-                        <option value=\"250\">250 руб</option>
-                        <option value=\"300\">300 руб</option>
-                        <option value=\"350\">350 руб</option>
-                        <option value=\"400\">400 руб</option>
-                        <option value=\"450\">450 руб</option>
-                        <option value=\"500\">500 руб</option>
-                        <option value=\"550\">550 руб</option>
-                        <option value=\"600\">600 руб</option>
-                        <option value=\"650\">650 руб</option>
-                        <option value=\"700\">700 руб</option>
-                        <option value=\"750\">750 руб</option>
-                        <option value=\"800\">800 руб</option>
-                        <option value=\"850\">850 руб</option>
-                        <option value=\"900\">900 руб</option>
-                        <option value=\"950\">950 руб</option>
-                        <option value=\"1000\">1000 руб</option>
-                    </select>";
-					} ?>
-					<input type="text" name="cost" value="<?= $repairs['cost']; ?>" id="cost" class="input-xlarge"
-					       readonly/>
+					<select name="cost" id="cost">
+						<option value="0">Выберите стоймость</option>
+						<? foreach ($services as $service) : ?>
+							<option value="<?= $service['cost'] ?>"
+							        <? if ($repairs['cost'] == $service['cost']) { ?>selected="selected"<? } ?>><?= $service['description'] ?></option>
+						<? endforeach; ?>
+					</select>
 				</div>
 			</div>
 			<div class="control-group">

@@ -45,6 +45,7 @@ $route['tickets'] = "tickets/display";
 $route['tel_tickets'] = "tel_tickets/display";
 $route['installations'] = "installations/display";
 $route['repairs'] = "repairs/display";
+$route['services'] = "services/display";
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

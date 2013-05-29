@@ -19,6 +19,7 @@ class Repairs extends CI_Controller
 		parent::__construct();
 		$this->load->model('crud_model');
 		$this->load->model('repairs_model');
+		$this->load->model('services_model');
 
 		if (!$this->ion_auth->logged_in()) {
 			redirect('auth/login');
@@ -119,6 +120,11 @@ class Repairs extends CI_Controller
 		$id = $this->uri->segment(3, 0);
 		$id = (int)$id;
 
+		$this->data['services'] = array(
+			'description' => 'Описание',
+			'cost' => 'Стоймость',
+		);
+
 		$this->form_validation->set_rules($this->repairs_model->update_rules);
 
 		if ($this->form_validation->run() == TRUE) {
@@ -160,6 +166,7 @@ class Repairs extends CI_Controller
 		}
 
 		$this->data['repairs'] = $this->repairs_model->get_by_id($id);
+		$this->data['services'] = $this->services_model->get_list('id', 'asc');
 
 		if ($this->data['repairs'] == null) {
 			$this->data['msg'] = 'Ничего не найденно.';

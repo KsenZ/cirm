@@ -26,6 +26,9 @@ class Settings extends CI_Controller
 		$this->lang->load('auth');
 		$this->load->helper('language');
 
+		$this->load->model('crud_model');
+		$this->load->model('services_model');
+
 		if (!$this->ion_auth->logged_in()) {
 			redirect('auth/login');
 		}
