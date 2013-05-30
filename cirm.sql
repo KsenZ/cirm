@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Май 29 2013 г., 13:05
+-- Время создания: Май 30 2013 г., 09:13
 -- Версия сервера: 5.5.30
 -- Версия PHP: 5.4.12
 
@@ -19,8 +19,6 @@ SET time_zone = "+00:00";
 --
 -- База данных: `cirm`
 --
-CREATE DATABASE `cirm` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `cirm`;
 
 -- --------------------------------------------------------
 
@@ -90,39 +88,8 @@ CREATE TABLE IF NOT EXISTS `crepairs` (
 --
 
 INSERT INTO `crepairs` (`id`, `date`, `cdate`, `client`, `phone`, `product`, `sn`, `box`, `wire`, `sh`, `attrition`, `scratch`, `new`, `diag`, `repair`, `description`, `comment`, `cost`, `responsible`, `open`, `close`) VALUES
+(6, '2013-04-29', '2013-04-29', 'Test Test Test', 999999, 'TestTestTest', '1324657498', 1, 0, 0, 1, 0, 0, 0, 1, 'TestTestTestTest', 'Test Test Test', 200, 'Admin Admin', 'Admin Admin', 'Admin Admin'),
 (7, '2013-05-29', '2013-05-29', 'TestTestTest', 123456, 'TestTestTest', '1324657498', 0, 1, 1, 1, 0, 0, 1, 0, 'TestTestTestTest', 'Test Test Test', 150, 'Admin Admin', 'Admin Admin', 'Admin Admin');
-
--- --------------------------------------------------------
-
---
--- Структура таблицы `ctel_tickets`
---
-
-CREATE TABLE IF NOT EXISTS `ctel_tickets` (
-  `id` smallint(4) unsigned NOT NULL,
-  `date` datetime NOT NULL,
-  `cdate` datetime NOT NULL,
-  `phone` int(20) NOT NULL,
-  `contact` int(20) NOT NULL,
-  `address` varchar(50) NOT NULL,
-  `description` char(250) NOT NULL DEFAULT '',
-  `comment` char(250) NOT NULL DEFAULT '',
-  `open` char(50) NOT NULL DEFAULT '',
-  `responsible` char(50) NOT NULL DEFAULT '',
-  `close` char(50) NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- Дамп данных таблицы `ctel_tickets`
---
-
-INSERT INTO `ctel_tickets` (`id`, `date`, `cdate`, `phone`, `contact`, `address`, `description`, `comment`, `open`, `responsible`, `close`) VALUES
-(20, '2013-05-29 12:48:13', '2013-05-29 12:49:39', 999999, 888888, 'Test 123', 'TestTestTestTest', 'Test Test Test', 'Admin Admin', 'Admin Admin', 'Admin Admin'),
-(22, '2013-05-29 12:48:32', '2013-05-29 12:49:47', 999999, 888888, 'Test 123', 'TestTestTestTest', 'Test Test Test', 'Admin Admin', 'Admin Admin', 'Admin Admin'),
-(24, '2013-05-29 12:48:44', '2013-05-29 12:49:30', 999999, 888888, 'Test 123', 'TestTestTestTest', 'Test Test Test', 'Admin Admin', 'Admin Admin', 'Admin Admin'),
-(18, '2013-05-29 12:48:02', '2013-05-29 12:49:25', 999999, 888888, 'Test 123', 'TestTestTestTest', 'Test Test Test', 'Admin Admin', 'Admin Admin', 'Admin Admin'),
-(21, '2013-05-29 12:48:22', '2013-05-29 12:49:19', 999999, 888888, 'Test 123', 'TestTestTestTest', 'Test Test Test', 'Admin Admin', 'Admin Admin', 'Admin Admin');
 
 -- --------------------------------------------------------
 
@@ -139,6 +106,7 @@ CREATE TABLE IF NOT EXISTS `ctickets` (
   `address` varchar(50) NOT NULL,
   `description` char(250) NOT NULL DEFAULT '',
   `comment` char(250) NOT NULL DEFAULT '',
+  `subunit` varchar(50) NOT NULL,
   `open` char(50) NOT NULL DEFAULT '',
   `responsible` char(50) NOT NULL DEFAULT '',
   `close` char(50) NOT NULL DEFAULT '',
@@ -149,13 +117,13 @@ CREATE TABLE IF NOT EXISTS `ctickets` (
 -- Дамп данных таблицы `ctickets`
 --
 
-INSERT INTO `ctickets` (`id`, `date`, `cdate`, `name`, `phone`, `address`, `description`, `comment`, `open`, `responsible`, `close`) VALUES
-(29, '2013-05-29 12:42:53', '2013-05-29 12:46:28', 'Test Test', 123456, 'Test 123', 'TestTestTestTest', 'Test Test Test', 'Admin Admin', 'Admin Admin', 'Admin Admin'),
-(33, '2013-05-29 12:43:50', '2013-05-29 12:46:25', 'Test Test', 123456, 'Test 123', 'TestTestTestTest', 'Test Test Test', 'Admin Admin', 'Admin Admin', 'Admin Admin'),
-(25, '2013-05-29 12:42:25', '2013-05-29 12:46:20', 'Test Test', 123456, 'Test 123', 'TestTestTestTest', 'Test Test Test', 'Admin Admin', 'Admin Admin', 'Admin Admin'),
-(26, '2013-05-29 12:42:33', '2013-05-29 12:46:16', 'Test Test', 123456, 'Test 123', 'TestTestTestTest', 'Test Test Test', 'Admin Admin', 'Admin Admin', 'Admin Admin'),
-(35, '2013-05-29 12:44:04', '2013-05-29 12:45:58', 'Test Test', 123456, 'Test 123', 'TestTestTestTest', 'Test Test Test', 'Admin Admin', 'Admin Admin', 'Admin Admin'),
-(28, '2013-05-29 12:42:46', '2013-05-29 12:46:12', 'Test Test', 123456, 'Test 123', 'TestTestTestTest', 'Test Test Test', 'Admin Admin', 'Admin Admin', 'Admin Admin');
+INSERT INTO `ctickets` (`id`, `date`, `cdate`, `name`, `phone`, `address`, `description`, `comment`, `subunit`, `open`, `responsible`, `close`) VALUES
+(29, '2013-05-29 12:42:53', '2013-05-29 12:46:28', 'Test Test', 123456, 'Test 123', 'TestTestTestTest', 'Test Test Test', '', 'Admin Admin', 'Admin Admin', 'Admin Admin'),
+(33, '2013-05-29 12:43:50', '2013-05-29 12:46:25', 'Test Test', 123456, 'Test 123', 'TestTestTestTest', 'Test Test Test', '', 'Admin Admin', 'Admin Admin', 'Admin Admin'),
+(25, '2013-05-29 12:42:25', '2013-05-29 12:46:20', 'Test Test', 123456, 'Test 123', 'TestTestTestTest', 'Test Test Test', '', 'Admin Admin', 'Admin Admin', 'Admin Admin'),
+(26, '2013-05-29 12:42:33', '2013-05-29 12:46:16', 'Test Test', 123456, 'Test 123', 'TestTestTestTest', 'Test Test Test', '', 'Admin Admin', 'Admin Admin', 'Admin Admin'),
+(35, '2013-05-29 12:44:04', '2013-05-29 12:45:58', 'Test Test', 123456, 'Test 123', 'TestTestTestTest', 'Test Test Test', '', 'Admin Admin', 'Admin Admin', 'Admin Admin'),
+(28, '2013-05-29 12:42:46', '2013-05-29 12:46:12', 'Test Test', 123456, 'Test 123', 'TestTestTestTest', 'Test Test Test', '', 'Admin Admin', 'Admin Admin', 'Admin Admin');
 
 -- --------------------------------------------------------
 
@@ -259,7 +227,6 @@ CREATE TABLE IF NOT EXISTS `repairs` (
 --
 
 INSERT INTO `repairs` (`id`, `date`, `client`, `phone`, `product`, `sn`, `box`, `wire`, `sh`, `attrition`, `scratch`, `new`, `diag`, `repair`, `description`, `comment`, `cost`, `responsible`, `open`) VALUES
-(6, '2013-05-29', 'Test Test Test', 999999, 'TestTestTest', '1324657498', 1, 0, 0, 1, 0, 0, 0, 1, 'TestTestTestTest', '', 0, 'Admin Admin', 'Admin Admin'),
 (8, '2013-05-29', 'TestTestTest', 123456, 'TestTestTest', '1324657498', 1, 1, 0, 0, 0, 1, 0, 1, 'TestTestTestTest', '', 0, 'Internet Repairs', 'Admin Admin'),
 (9, '2013-05-29', 'TestTestTest', 123456, 'TestTestTest', '1324657498', 1, 1, 1, 1, 1, 0, 0, 1, 'TestTestTestTest', '', 0, 'Internet Repairs', 'Admin Admin');
 
@@ -289,39 +256,6 @@ INSERT INTO `services` (`id`, `description`, `cost`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `tel_tickets`
---
-
-CREATE TABLE IF NOT EXISTS `tel_tickets` (
-  `id` smallint(4) unsigned NOT NULL AUTO_INCREMENT,
-  `date` datetime NOT NULL,
-  `phone` int(20) NOT NULL,
-  `contact` int(20) NOT NULL,
-  `address` varchar(50) NOT NULL,
-  `description` char(250) NOT NULL DEFAULT '',
-  `comment` char(250) NOT NULL DEFAULT '',
-  `open` char(50) NOT NULL DEFAULT '',
-  `responsible` char(50) NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=27 ;
-
---
--- Дамп данных таблицы `tel_tickets`
---
-
-INSERT INTO `tel_tickets` (`id`, `date`, `phone`, `contact`, `address`, `description`, `comment`, `open`, `responsible`) VALUES
-(19, '2013-05-29 12:48:08', 999999, 888888, 'Test 123', 'TestTestTestTest', '', 'Admin Admin', 'Admin Admin'),
-(17, '2013-05-29 12:47:52', 999999, 888888, 'Test 123', 'TestTestTestTest', '', 'Admin Admin', 'Telephome Telephone'),
-(16, '2013-05-29 12:47:39', 999999, 888888, 'Test 123', 'TestTestTestTest', '', 'Admin Admin', 'Telephome Telephone'),
-(15, '2013-05-29 12:47:31', 999999, 888888, 'Test 123', 'TestTestTestTest', '', 'Admin Admin', 'Telephome Telephone'),
-(14, '2013-05-29 12:47:11', 999999, 888888, 'Test 123', 'TestTestTestTest', '', 'Admin Admin', 'Admin Admin'),
-(23, '2013-05-29 12:48:38', 999999, 888888, 'Test 123', 'TestTestTestTest', '', 'Admin Admin', 'Admin Admin'),
-(25, '2013-05-29 12:48:49', 999999, 888888, 'Test 123', 'TestTestTestTest', '', 'Admin Admin', 'Admin Admin'),
-(26, '2013-05-29 12:48:57', 999999, 888888, 'Test 123', 'TestTestTestTest', '', 'Admin Admin', 'Admin Admin');
-
--- --------------------------------------------------------
-
---
 -- Структура таблицы `tickets`
 --
 
@@ -333,6 +267,7 @@ CREATE TABLE IF NOT EXISTS `tickets` (
   `address` varchar(50) NOT NULL,
   `description` char(250) NOT NULL DEFAULT '',
   `comment` char(250) NOT NULL DEFAULT '',
+  `subunit` varchar(50) NOT NULL,
   `open` char(50) NOT NULL DEFAULT '',
   `responsible` char(50) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
@@ -342,22 +277,22 @@ CREATE TABLE IF NOT EXISTS `tickets` (
 -- Дамп данных таблицы `tickets`
 --
 
-INSERT INTO `tickets` (`id`, `date`, `name`, `phone`, `address`, `description`, `comment`, `open`, `responsible`) VALUES
-(27, '2013-05-29 12:42:39', 'Test Test', 123456, 'Test 123', 'TestTestTestTest', '', 'Admin Admin', 'Admin Admin'),
-(24, '2013-05-29 12:42:13', 'Test Test', 123456, 'Test 123', 'TestTestTestTest', '', 'Admin Admin', 'Internet Repairs'),
-(23, '2013-05-29 12:42:04', 'Test Test', 123456, 'Test 123', 'TestTestTestTest', '', 'Admin Admin', 'Admin Admin'),
-(22, '2013-05-29 12:41:56', 'Test Test', 123456, 'Test 123', 'TestTestTestTest', '', 'Admin Admin', 'Internet Repairs'),
-(21, '2013-05-29 12:41:10', 'Test Test', 123456, 'Test 123', 'TestTestTestTest', '', 'Admin Admin', 'Admin Admin'),
-(30, '2013-05-29 12:42:59', 'Test Test', 123456, 'Test 123', 'TestTestTestTest', '', 'Admin Admin', 'Admin Admin'),
-(31, '2013-05-29 12:43:10', 'Test Test', 123456, 'Test 123', 'TestTestTestTest', '', 'Admin Admin', 'Admin Admin'),
-(32, '2013-05-29 12:43:18', 'Test Test', 123456, 'Test 123', 'TestTestTestTest', '', 'Admin Admin', 'Admin Admin'),
-(34, '2013-05-29 12:43:58', 'Test Test', 123456, 'Test 123', 'TestTestTestTest', '', 'Admin Admin', 'Admin Admin'),
-(36, '2013-05-29 12:44:11', 'Test Test', 123456, 'Test 123', 'TestTestTestTest', '', 'Admin Admin', 'Admin Admin'),
-(37, '2013-05-29 12:44:17', 'Test Test', 123456, 'Test 123', 'TestTestTestTest', '', 'Admin Admin', 'Admin Admin'),
-(38, '2013-05-29 12:44:23', 'Test Test', 123456, 'Test 123', 'TestTestTestTest', '', 'Admin Admin', 'Admin Admin'),
-(39, '2013-05-29 12:44:28', 'Test Test', 123456, 'Test 123', 'TestTestTestTest', '', 'Admin Admin', 'Admin Admin'),
-(40, '2013-05-29 12:44:43', 'Test Test', 123456, 'Test 123', 'TestTestTestTest', '', 'Admin Admin', 'Admin Admin'),
-(41, '2013-05-29 12:44:48', 'Test Test', 123456, 'Test 123', 'TestTestTestTest', '', 'Admin Admin', 'Admin Admin');
+INSERT INTO `tickets` (`id`, `date`, `name`, `phone`, `address`, `description`, `comment`, `subunit`, `open`, `responsible`) VALUES
+(27, '2013-05-29 12:42:39', 'Test Test', 123456, 'Test 123', 'TestTestTestTest', '', '', 'Admin Admin', 'Admin Admin'),
+(24, '2013-05-29 12:42:13', 'Test Test', 123456, 'Test 123', 'TestTestTestTest', '', '', 'Admin Admin', 'Internet Repairs'),
+(23, '2013-05-29 12:42:04', 'Test Test', 123456, 'Test 123', 'TestTestTestTest', '', '', 'Admin Admin', 'Admin Admin'),
+(22, '2013-05-29 12:41:56', 'Test Test', 123456, 'Test 123', 'TestTestTestTest', '', '', 'Admin Admin', 'Internet Repairs'),
+(21, '2013-05-29 12:41:10', 'Test Test', 123456, 'Test 123', 'TestTestTestTest', 'esewerwerwer', '', 'Admin Admin', 'Admin Admin'),
+(30, '2013-05-29 12:42:59', 'Test Test', 123456, 'Test 123', 'TestTestTestTest', '', '', 'Admin Admin', 'Admin Admin'),
+(31, '2013-05-29 12:43:10', 'Test Test', 123456, 'Test 123', 'TestTestTestTest', '', '', 'Admin Admin', 'Admin Admin'),
+(32, '2013-05-29 12:43:18', 'Test Test', 123456, 'Test 123', 'TestTestTestTest', '', '', 'Admin Admin', 'Admin Admin'),
+(34, '2013-05-29 12:43:58', 'Test Test', 123456, 'Test 123', 'TestTestTestTest', '', '', 'Admin Admin', 'Admin Admin'),
+(36, '2013-05-29 12:44:11', 'Test Test', 123456, 'Test 123', 'TestTestTestTest', '', '', 'Admin Admin', 'Admin Admin'),
+(37, '2013-05-29 12:44:17', 'Test Test', 123456, 'Test 123', 'TestTestTestTest', '', '', 'Admin Admin', 'Admin Admin'),
+(38, '2013-05-29 12:44:23', 'Test Test', 123456, 'Test 123', 'TestTestTestTest', '', '', 'Admin Admin', 'Admin Admin'),
+(39, '2013-05-29 12:44:28', 'Test Test', 123456, 'Test 123', 'TestTestTestTest', '', '', 'Admin Admin', 'Admin Admin'),
+(40, '2013-05-29 12:44:43', 'Test Test', 123456, 'Test 123', 'TestTestTestTest', '', '', 'Admin Admin', 'Admin Admin'),
+(41, '2013-05-29 12:44:48', 'Test Test', 123456, 'Test 123', 'TestTestTestTest', '', '', 'Admin Admin', 'Admin Admin');
 
 -- --------------------------------------------------------
 
@@ -391,8 +326,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`) VALUES
-(1, '\0\0', 'admin', 'ed3cc690ad98d799c42ead09a4dbdfdd34aff537', '9462e8eee0', 'admin@admin.com', '', NULL, NULL, '41c2f4675650ef8282a426eed291729cdd1595bd', 1268889823, 1369799259, 1, 'Admin', 'Admin', 'Admin', '99-99-99'),
-(2, 'S�.', 'internet', '6cedcf918d8fe38d93f92e3261eab1f44045cd65', NULL, 'internet@internet.com', NULL, NULL, NULL, '1a7faac42b8cab7fe96fbb136dfa4b0ae6ca8327', 1366696301, 1366945252, 1, 'Internet', 'Repairs', 'Internet', '99-99-99'),
+(1, '\0\0', 'admin', 'ed3cc690ad98d799c42ead09a4dbdfdd34aff537', '9462e8eee0', 'admin@admin.com', '', NULL, NULL, '8e2ce6d1d64c10848cafdf8853286e0627b57845', 1268889823, 1369875051, 1, 'Admin', 'Admin', 'Admin', '99-99-99'),
+(2, 'S�.', 'internet', '6cedcf918d8fe38d93f92e3261eab1f44045cd65', NULL, 'internet@internet.com', NULL, NULL, NULL, '110f340356cec19568c5b8faecc69399f30b6e53', 1366696301, 1369875562, 1, 'Internet', 'Repairs', 'Internet', '99-99-99'),
 (5, 'S�.', 'telephone', '37187345be7b3cf8358199cd3f01509234b38d89', NULL, 'telephone@telephone.com', NULL, NULL, NULL, NULL, 1369206311, 1369206311, 1, 'Telephome', 'Telephone', 'Telephone', '99-99-99');
 
 -- --------------------------------------------------------
