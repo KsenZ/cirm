@@ -24,7 +24,7 @@ class Tickets_model extends Crud_model
 	public function get_list($limit, $offset, $sort_by, $sort_order)
 	{
 		$sort_order = ($sort_order == 'desc') ? 'desc' : 'asc';
-		$sort_columns = array('id', 'date', 'name', 'phone', 'address', 'description', 'open', 'responsible');
+		$sort_columns = array('id', 'subunit', 'date', 'name', 'open', 'responsible');
 		$sort_by = in_array($sort_by, $sort_columns) ? $sort_by : 'id';
 
 		$this->db->order_by($sort_by, $sort_order)->limit($limit, $offset);
@@ -35,7 +35,7 @@ class Tickets_model extends Crud_model
 	public function get_list_closed($limit, $offset, $sort_by, $sort_order)
 	{
 		$sort_order = ($sort_order == 'desc') ? 'desc' : 'asc';
-		$sort_columns = array('id', 'date', 'name', 'phone', 'address', 'description', 'open', 'responsible');
+		$sort_columns = array('id', 'subunit', 'date', 'name', 'open', 'responsible');
 		$sort_by = in_array($sort_by, $sort_columns) ? $sort_by : 'id';
 
 		$this->db->order_by($sort_by, $sort_order)->limit($limit, $offset);

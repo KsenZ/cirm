@@ -107,6 +107,16 @@ class Repairs_model extends Crud_model
 		return $query->row_array();
 	}
 
+	public function get_cost_sum($username, $month)
+	{
+		$this->db->select_sum('cost');
+		$this->db->where('close', $username);
+		$this->db->like('cdate', $month);
+		$query = $this->db->get($this->ctable);
+		$result = $query->result();
+		return $result[0]->cost;
+	}
+
 	public $add_rules = array
 	(
 		array

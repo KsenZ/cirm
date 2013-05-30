@@ -29,6 +29,14 @@
 				</div>
 			</div>
 			<div class="control-group">
+				<label for="subunit" class="control-label">Подразделение:</label>
+
+				<div class="controls">
+					<input type="text" name="subunit" value="<?= $tickets['subunit']; ?>" id="subunit"
+					       class="input-xlarge" readonly/>
+				</div>
+			</div>
+			<div class="control-group">
 				<label for="date" class="control-label">Дата:</label>
 
 				<div class="controls">
@@ -37,7 +45,7 @@
 				</div>
 			</div>
 			<div class="control-group">
-				<label for="name" class="control-label">Ф.И.О. абонента:</label>
+				<label for="name" class="control-label">Ф.И.О. или №:</label>
 
 				<div class="controls">
 					<input type="text" name="name" value="<?php echo set_value('name', $tickets['name']); ?>" id="name"

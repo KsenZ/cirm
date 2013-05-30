@@ -47,10 +47,7 @@
 						<? echo anchor('cirm', '<i class="icon-home"></i> Главная'); ?>
 					</li>
 					<li <? if ($this->uri->segment(1) == 'tickets') echo 'class="active"'; ?> >
-						<? echo anchor('tickets/display', '<i class="icon-globe"></i> Заявки интернет'); ?>
-					</li>
-					<li <? if ($this->uri->segment(1) == 'tel_tickets') echo 'class="active"'; ?> >
-						<? echo anchor('tel_tickets/display', '<i class="icon-phone"></i> Заявки телефония'); ?>
+						<? echo anchor('tickets/display', '<i class="icon-globe"></i> Заявки'); ?>
 					</li>
 					<li <? if ($this->uri->segment(1) == 'installations') echo 'class="active"'; ?> >
 						<? echo anchor('installations/display', '<i class="icon-sitemap"></i> Подключения'); ?>

@@ -7,7 +7,7 @@
 		<fieldset xmlns="http://www.w3.org/1999/xhtml">
 			<legend>Новый тикет</legend>
 			<div class="control-group<?php if (form_error('name')) echo ' error'; ?>">
-				<label for="name" class="control-label">Ф.И.О. абонента:</label>
+				<label for="name" class="control-label">Ф.И.О. или №:</label>
 
 				<div class="controls">
 					<input type="text" name="name" value="" id="name" class="input-xlarge"/>
@@ -39,6 +39,16 @@
 							<option
 								value="<?= $user->first_name; ?> <?= $user->last_name; ?>"><?= $user->first_name; ?> <?= $user->last_name; ?></option>
 						<?php endforeach; ?>
+					</select>
+				</div>
+			</div>
+			<div class="control-group">
+				<label for="subunit" class="control-label">Подразделение:</label>
+
+				<div class="controls">
+					<select name="subunit" size="1">
+						<option value="Интернет">Интернет</option>
+						<option value="Телефония">Телефония</option>
 					</select>
 				</div>
 			</div>

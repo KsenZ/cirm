@@ -2,7 +2,7 @@
 	<div class="content">
 		<legend>Список
 			тикетов <?php echo anchor('tickets/add', '<i class="icon-file"></i> Добавить новый', 'class="btn btn-small"'); ?>
-			| <?php echo anchor('tickets/display_closed', '<i class="icon-remove-circle"></i> Посмотреть закрытые', 'class="btn btn-small"'); ?></legend>
+			| <?php echo anchor('tickets/display_closed', '<i class="icon-remove-circle"></i> Закрытые', 'class="btn btn-small"'); ?></legend>
 		<table class="table table-striped table-bordered table-condensed">
 			<thead>
 			<tr>

@@ -30,13 +30,14 @@ class Tickets extends CI_Controller
 		$limit = 10;
 		$this->data['fields'] = array(
 			'id' => '№',
+			'responsible' => 'Ответственный',
+			'subunit' => 'Подразделение',
 			'date' => 'Дата открытия',
 			'name' => 'Ф.И.О. абонента',
 			'phone' => 'Контактный телефон',
 			'address' => 'Адрес',
 			'description' => 'Неисправность',
 			'open' => 'Открыл',
-			'responsible' => 'Ответственный'
 		);
 		$this->data['sort_by'] = $sort_by;
 		$this->data['sort_order'] = $sort_order;
@@ -81,6 +82,7 @@ class Tickets extends CI_Controller
 			'address' => 'Адрес',
 			'description' => 'Неисправность',
 			'comment' => 'Комментарий',
+			'subunit' => 'Подразделение',
 			'close' => 'Закрыл',
 		);
 		$this->data['sort_by'] = $sort_by;
@@ -130,6 +132,7 @@ class Tickets extends CI_Controller
 					'id' => $this->input->post('id'),
 					'open' => $this->input->post('open'),
 					'responsible' => $this->input->post('responsible'),
+					'subunit' => $this->input->post('subunit'),
 					'date' => $this->input->post('date'),
 					'cdate' => $this->input->post('cdate'),
 					'name' => $this->input->post('name'),
@@ -190,6 +193,7 @@ class Tickets extends CI_Controller
 				'address' => $this->input->post('address'),
 				'open' => "$current_user->first_name $current_user->last_name",
 				'responsible' => $this->input->post('responsible'),
+				'subunit' => $this->input->post('subunit'),
 				'description' => $this->input->post('description'),
 			);
 			$this->tickets_model->add($ticket);

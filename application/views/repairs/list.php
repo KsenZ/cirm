@@ -2,7 +2,8 @@
 	<div class="content">
 		<legend>Список
 			ремлистов <?php echo anchor('repairs/add', '<i class="icon-file"></i> Добавить новый', 'class="btn btn-small"'); ?>
-			| <?php echo anchor('repairs/display_closed', '<i class="icon-remove-circle"></i> Посмотреть выполненные', 'class="btn btn-small"'); ?></legend>
+			| <?php echo anchor('repairs/display_closed', '<i class="icon-remove-circle"></i> Посмотреть выполненные', 'class="btn btn-small"'); ?>
+			| <?php echo anchor('repairs/report', '<i class="icon-bar-chart"></i> Отчет', 'class="btn btn-small"'); ?></legend>
 		<table class="table table-striped table-bordered table-condensed">
 			<thead>
 			<tr>

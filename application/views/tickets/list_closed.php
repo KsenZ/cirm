@@ -1,6 +1,6 @@
 <div class="span10">
 	<div class="content">
-		<legend>Список закрытых тикетов</legend>
+		<legend>Список закрытых тикетов <?php echo anchor('tickets/display', '<i class="icon-remove-circle"></i> Открытые', 'class="btn btn-small"'); ?></legend>
 		<table class="table table-striped table-bordered table-condensed">
 			<thead>
 			<tr>

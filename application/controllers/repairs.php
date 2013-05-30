@@ -20,6 +20,7 @@ class Repairs extends CI_Controller
 		$this->load->model('crud_model');
 		$this->load->model('repairs_model');
 		$this->load->model('services_model');
+		$this->load->model('ion_auth_model');
 
 		if (!$this->ion_auth->logged_in()) {
 			redirect('auth/login');
@@ -220,7 +221,22 @@ class Repairs extends CI_Controller
 			$this->repairs_model->add($repair);
 			redirect('repairs');
 		}
-		$this->data['form_action'] = 'repairs/add/';
+		$this->data['form_action'] = 'repairs/add';
 		$this->layout->render('repairs/add', $this->data);
+	}
+
+	public function report()
+	{
+		if (isset($_POST['report'])) {
+			$username = $this->input->post('username');
+			$date = date("Y-m");
+			$this->data['sum_cost'] = $this->repairs_model->get_cost_sum($username, $date);
+			$this->data['form_action'] = 'repairs/report';
+			$this->layout->render('repairs/report', $this->data);
+		} else {
+			$this->data['sum_cost'] = '';
+			$this->data['form_action'] = 'repairs/report';
+			$this->layout->render('repairs/report', $this->data);
+		}
 	}
 }

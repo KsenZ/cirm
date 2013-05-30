@@ -86,7 +86,7 @@
 			</div>
 			<div class="form-actions">
 				<button class="btn btn-primary" type="submit">Сохранить</button>
-				<?php echo anchor('tickets', 'Отменить', 'class="btn"'); ?>
+				<?php echo anchor('repairs', 'Отменить', 'class="btn"'); ?>
 			</div>
 		</fieldset>
 		<?php echo form_close(); ?>
