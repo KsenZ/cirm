@@ -1,4 +1,4 @@
 cirm
 ====
 
-CiRM - CodeIgniter CRM
+CiRM - CodeIgniter Helpdesk
